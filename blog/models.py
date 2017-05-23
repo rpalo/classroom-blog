@@ -9,10 +9,13 @@ class Classroom(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "/classrooms/{}".format(self.pk)
+
 class UserProfile(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    classroom = models.ForeignKey(Classroom, on_delete=models.SET_NULL, null=True)
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    classrooms = models.ManyToManyField(Classroom)
 
     def __str__(self):
         return "{} Profile".format(self.user.username)
@@ -24,9 +27,13 @@ class Blog(models.Model):
 
     user = models.ForeignKey(User, related_name="blogs", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
+    classroom = models.ForeignKey(Classroom, related_name="blogs", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/blogs/{}".format(self.pk)
 
 class Post(models.Model):
     
@@ -41,4 +48,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/posts/{}".format(self.pk)
 
