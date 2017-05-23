@@ -16,5 +16,9 @@ class Post(models.Model):
     date_created = models.DateField(auto_now_add=True)
     body = models.TextField()
 
+    def author(self):
+        user = self.blog.user
+        return user.first_name
+
     def __str__(self):
         return self.title
