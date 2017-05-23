@@ -4,6 +4,8 @@ A platform for teachers to have their students blog.  Originally designed for us
 
 ## Features
 
+- Each Blog has a home page.
+
 ## Future/Possible Features
 
  - Teacher can have multiple classrooms
