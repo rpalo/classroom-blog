@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock title %}
+
+{% block body %}
+<h1>{{ student.first_name }} {{ student.last_name }}</h1>
+
+<div id="enrolled-classes">
+    <h2>Enrolled Classes</h2>
+    <ul>
+        {% for class in classlist %}
+        <li><a href="{% url 'classroom-detail' class.pk %}">{{ class.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div id="owned-blogs">
+    <h2>Owned Blogs</h2>
+    <ul>
+        {% for blog in bloglist %}
+        <li><a href="{% url 'blog-detail' blog.pk %}">{{ blog.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock body %}

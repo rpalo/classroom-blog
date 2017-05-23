@@ -3,7 +3,10 @@
 {% block title %}Blog | {{ blog.user.username }}{% endblock %}
 
 {% block body %}
-<h1>{{ blog.user.username }}'s Blog</h1>
+<h1>{{ blog.title }}</h1>
+{% if blog.classroom %}
+<p>Part of {{ blog.classroom.name }}</p>
+{% endif %}
 
 {% for post in blog.posts.all %}
 <h2>{{ post.title }}</h2>
