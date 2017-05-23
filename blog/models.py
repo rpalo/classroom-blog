@@ -9,11 +9,21 @@ class Classroom(models.Model):
     def __str__(self):
         return self.name
 
+class UserProfile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    classroom = models.ForeignKey(Classroom, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return "{} Profile".format(self.user.username)
+
+    def is_enrolled(self):
+        return self.classroom is not None
+
 class Blog(models.Model):
 
     user = models.ForeignKey(User, related_name="blogs", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    classroom = models.ForeignKey(Classroom, related_name="blogs", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
