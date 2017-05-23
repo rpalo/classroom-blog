@@ -11,7 +11,7 @@ class Blog(models.Model):
 
 class Post(models.Model):
     
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, related_name="posts", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     date_created = models.DateField(auto_now_add=True)
     body = models.TextField()
